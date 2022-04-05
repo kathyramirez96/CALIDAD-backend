@@ -25,10 +25,7 @@ export class UsuariosController {
     async ingresarSistema(
         @Query() data:string
     ) {
-        try{   
-            console.log(data);
-            
-                       
+        try{                          
             return await this._usuariosService.ingresoUsuarios(data["user"],data["clave"]);
         }catch(error){
             return new BadRequestException('Error al consultar Usuarios')

@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Get, Post, Put, Query } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
 import { crearDtoPublicaciones } from './dtos/create.dto';
 import { PublicacionesService } from './publicaciones.service';
 
@@ -39,7 +39,7 @@ export class PublicacionesController {
         }
     }
 
-          /********************************
+    /********************************
     *************Put***************
     *********************************/
     @Put('actualizar-publicaciones')
@@ -49,13 +49,24 @@ export class PublicacionesController {
             datosPublicacion:crearDtoPublicaciones
         }
     ) {
-        try{
-            console.log(id);
-            console.log(data);
-            
+        try{            
            return await this._publicacionesService.actrualizarPublicacion(JSON.parse(JSON.stringify(id)).id,JSON.parse(JSON.stringify(data)));
         }catch(error){
             return new BadRequestException('Error al actaulizar Publicacion')
+        }
+    }
+
+    /********************************
+    **************Delete***************
+    *********************************/
+    @Delete('eliminar-publicaciones')
+    async borrarPublicacion(
+        @Query() id:string,
+    ) {
+        try{                        
+            return await this._publicacionesService.eleiminarPublicacion(id);
+        }catch(error){
+            return new BadRequestException('Error al eliminar la publicacion'+error)
         }
     }
 }

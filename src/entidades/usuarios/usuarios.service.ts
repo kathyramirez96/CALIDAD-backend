@@ -58,7 +58,12 @@ export class UsuariosService {
         const usuario = await this.usuariosModel.find({usuario:user}).exec();
         const comparar = await bcrypt.compare(clave, usuario[0].clave);
         usuario[0].clave = comparar;
-        return usuario;
+        if(comparar){
+            return usuario;
+        }else{
+            return null;
+        }
+        
    }
 
     // async actualizarEstado(id){

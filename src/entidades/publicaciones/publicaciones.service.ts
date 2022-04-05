@@ -33,5 +33,10 @@ export class PublicacionesService {
         async actrualizarPublicacion(id:string,crearPublicacionDto: crearDtoPublicaciones): Promise<Publicaciones>{
             return await this.publicacionessModel.findByIdAndUpdate(id,crearPublicacionDto);
         }
+
+        async eleiminarPublicacion(id:string):Promise<Publicaciones>{
+            const datos = JSON.parse(JSON.stringify(id));
+            return await this.publicacionessModel.findByIdAndDelete(datos.id);
+        }
     
 }
