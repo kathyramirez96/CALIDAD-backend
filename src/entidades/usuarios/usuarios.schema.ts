@@ -9,7 +9,34 @@ export class Usuarios{
     nombre: string
 
     @Prop(String)
+    apellido: string
+    
+    @Prop(String)
+    direccion:string
+
+    @Prop(String)
+    correo:string
+
+    @Prop(String)
+    provincia:string
+
+    @Prop(String)
+    pais:string
+
+    @Prop(String)
+    genero:string
+
+    @Prop(String)
+    telefono:string
+
+    @Prop(String)
     clave:string
+
+    @Prop(String)
+    ip:string
+
+    @Prop(String)
+    token:string
 
     @Prop(String)
     responsable:string

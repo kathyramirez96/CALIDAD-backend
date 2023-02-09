@@ -2,7 +2,7 @@ export const PUERTO = 3000;
 
 //conexión base de datos
 
-const username = 'Julio';
+const username = 'kathy';
 const contra = 'julyok64';
-export const MONGODB_DATABASE = 'MEDFYD-DB';
-export const MONGODB_CONEXION = `mongodb+srv://${username}:${contra}@cluster0-tmte0.gcp.mongodb.net/${MONGODB_DATABASE}`
+export const MONGODB_DATABASE = 'BDCALIDAD';
+export const MONGODB_CONEXION = `mongodb+srv://${username}:${contra}@cluster0.bfhgrrq.mongodb.net/?retryWrites=true&w=majority/${MONGODB_DATABASE}`
