@@ -30,6 +30,9 @@ export class Usuarios{
     telefono:string
 
     @Prop(String)
+    usuario:string
+
+    @Prop(String)
     clave:string
 
     @Prop(String)
