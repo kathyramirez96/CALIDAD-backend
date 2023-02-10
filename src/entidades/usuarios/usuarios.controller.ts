@@ -37,12 +37,10 @@ export class UsuariosController {
     *********************************/
     @Post('crear-usuarios')
     async crearPaginas(
-        @Body() data:{
-            datosUsuarios:crearDtoUsuarios
-        }
+        @Body() body
     ) {
         try{
-            return await this._usuariosService.crearUsuarios(JSON.parse(JSON.stringify(data)));
+            return await this._usuariosService.crearUsuarios(body);
         }catch(error){
             return new BadRequestException('Error al crear Usuarios')
         }

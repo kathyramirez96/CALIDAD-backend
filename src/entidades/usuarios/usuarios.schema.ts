@@ -5,8 +5,12 @@ export type UsuariosDocument = Usuarios & Document;
 
 @Schema()
 export class Usuarios{
+
     @Prop(String)
     nombre: string
+
+    @Prop(String)
+    cedula: string
 
     @Prop(String)
     apellido: string
@@ -29,11 +33,27 @@ export class Usuarios{
     @Prop(String)
     telefono:string
 
+
+    @Prop(String)
+    celular:string
+    
+
     @Prop(String)
     usuario:string
 
     @Prop(String)
     clave:string
+
+    @Prop(String)
+    sangre:string
+
+    @Prop(String)
+    altura:string
+
+    @Prop(String)
+    peso:string
+
+
 
     @Prop(String)
     ip:string

@@ -13,18 +13,18 @@ export class UsuariosService {
         ){}
     
  
-        async crearUsuarios(crearUsuarioDto: crearDtoUsuarios): Promise<Usuarios>{
+        async crearUsuarios(body: any): Promise<Usuarios>{
         
-            const existeUsuario = await this.buscarUsuarioxNombre(crearUsuarioDto.nombre);
+            const existeUsuario = await this.buscarUsuarioxNombre(body.user);
              
             if(existeUsuario.length === 0 ){
                 try{
-                    let clave_hash = await bcrypt.hash(crearUsuarioDto.clave,10);
-                    crearUsuarioDto.clave = clave_hash;
-                    crearUsuarioDto.fecharegistro = FECHA_ACTUAL;
-                    crearUsuarioDto.responsable = "ADMIN";
-                    crearUsuarioDto.estado = 0;
-                    const crearUsuarios = new this.usuariosModel(crearUsuarioDto);
+                    let clave_hash = await bcrypt.hash(body.clave,10);
+                    body.clave = clave_hash;
+                    body.fecharegistro = FECHA_ACTUAL;
+                    body.responsable = "ADMIN";
+                    body.estado = 1;
+                    const crearUsuarios = new this.usuariosModel(body);
                     return await crearUsuarios.save();
                 }catch(error){
                     console.error("no se pudo enviar el correo");
