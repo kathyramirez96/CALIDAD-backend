@@ -13,9 +13,8 @@ export class UsuariosService {
         ){}
     
  
-        async crearUsuarios(body: any): Promise<Usuarios>{
-        
-            const existeUsuario = await this.buscarUsuarioxNombre(body.user);
+        async crearUsuarios(body: any){            
+            const existeUsuario = await this.buscarUsuarioxNombre(body.usuario);
              
             if(existeUsuario.length === 0 ){
                 try{
@@ -27,10 +26,13 @@ export class UsuariosService {
                     const crearUsuarios = new this.usuariosModel(body);
                     return await crearUsuarios.save();
                 }catch(error){
-                    console.error("no se pudo enviar el correo");
+                    console.log(error);
                     
+                    console.error("no se pudo enviar el correo");
                 }
-            } 
+            }else{
+                return {estado:"error", mensaje:"El usuario ya existe"}
+            }
         }
     
 
@@ -39,8 +41,8 @@ export class UsuariosService {
     }
 
 
-    async buscarUsuarioxNombre(user){
-        return await this.usuariosModel.find({usuario:user}).exec();
+    async buscarUsuarioxNombre(usuario){
+        return await this.usuariosModel.find({usuario:usuario}).exec();
     }
     async buscarUsuarioxCorreo(correo){
         return await this.usuariosModel.find({correo:correo}).exec();
@@ -54,14 +56,18 @@ export class UsuariosService {
     }
 
 
-    async ingresoUsuarios(user,clave){
-        const usuario = await this.usuariosModel.find({usuario:user}).exec();
-        const comparar = await bcrypt.compare(clave, usuario[0].clave);
+    async ingresoUsuarios(body:any){
+        console.log(body.usuario);
+        
+        const usuario = await this.usuariosModel.find({usuario:body.usuario}).exec();
+        console.log(usuario);
+        
+        const comparar = await bcrypt.compare(body.clave, usuario[0].clave);
         usuario[0].clave = comparar;
         if(comparar){
             return usuario;
         }else{
-            return null;
+            return {estado:"error",mensaje:"clave incorrecta"};
         }
         
    }

@@ -5,4 +5,4 @@ export const PUERTO = 3000;
 const username = 'kathy';
 const contra = 'julyok64';
 export const MONGODB_DATABASE = 'BDCALIDAD';
-export const MONGODB_CONEXION = `mongodb+srv://${username}:${contra}@cluster0.bfhgrrq.mongodb.net/?retryWrites=true&w=majority/${MONGODB_DATABASE}`
+export const MONGODB_CONEXION = `mongodb+srv://${username}:${contra}@cluster0.bfhgrrq.mongodb.net/${MONGODB_DATABASE}?retryWrites=true&w=majority`
